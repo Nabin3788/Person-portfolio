@@ -1,0 +1,117 @@
+[
+  {
+    "id": "mpfk17ygsh901e",
+    "name": "Gobinda",
+    "email": "nabin3788@gmail.com",
+    "message": "how can we collabrate",
+    "submittedBy": "mpfjmpltw91c1b",
+    "status": "pending",
+    "createdAt": "2026-05-21T13:56:50.440Z",
+    "replies": [
+      {
+        "id": "mpfl7920qbe5",
+        "text": "ok then we can collbrate",
+        "createdAt": "2026-05-21T14:29:31.416Z"
+      },
+      {
+        "id": "mpflekj0xb6r",
+        "text": "make it useful",
+        "createdAt": "2026-05-21T14:35:12.876Z"
+      },
+      {
+        "id": "mpfmhz5ti46q",
+        "text": "ok",
+        "createdAt": "2026-05-21T15:05:51.425Z"
+      },
+      {
+        "id": "mpfmv8ql37u9",
+        "text": "now listen to me",
+        "createdAt": "2026-05-21T15:16:10.366Z"
+      },
+      {
+        "id": "mpfmvossvfyc",
+        "text": "i am busy for  a while. i will give response later",
+        "createdAt": "2026-05-21T15:16:31.180Z"
+      }
+    ],
+    "messages": [
+      {
+        "id": "mpflmz6oqef0",
+        "sender": "user",
+        "text": "ram",
+        "createdAt": "2026-05-21T14:41:45.120Z"
+      },
+      {
+        "id": "mpfm0pe6yo4d",
+        "sender": "user",
+        "text": "good\n",
+        "createdAt": "2026-05-21T14:52:25.614Z"
+      },
+      {
+        "id": "mpfmh25z5zin",
+        "sender": "user",
+        "text": "how are you . can you reply fast\n",
+        "createdAt": "2026-05-21T15:05:08.663Z"
+      },
+      {
+        "id": "mpfmhz5ti46q",
+        "sender": "admin",
+        "text": "ok",
+        "createdAt": "2026-05-21T15:05:51.425Z"
+      },
+      {
+        "id": "mpfmkrz5iry3",
+        "sender": "user",
+        "text": "then how can i hire you",
+        "createdAt": "2026-05-21T15:08:02.081Z"
+      },
+      {
+        "id": "mpfmrsjv0gjz",
+        "sender": "user",
+        "text": "please respond\nme\n",
+        "createdAt": "2026-05-21T15:13:29.419Z"
+      },
+      {
+        "id": "mpfmv8ql37u9",
+        "sender": "admin",
+        "text": "now listen to me",
+        "createdAt": "2026-05-21T15:16:10.366Z"
+      },
+      {
+        "id": "mpfmvossvfyc",
+        "sender": "admin",
+        "text": "i am busy for  a while. i will give response later",
+        "createdAt": "2026-05-21T15:16:31.180Z"
+      },
+      {
+        "id": "mpfmwnkmp1lb",
+        "sender": "user",
+        "text": "ok i will contact tommorrow",
+        "createdAt": "2026-05-21T15:17:16.246Z"
+      }
+    ],
+    "updatedAt": "2026-05-21T15:17:16.253Z",
+    "notificationRead": true,
+    "notificationReadAt": "2026-05-21T15:16:54.023Z"
+  },
+  {
+    "id": "mpfkgc4i8u9q6d",
+    "name": "Gobinda",
+    "email": "nabin3788@gmail.com",
+    "message": "how are you",
+    "submittedBy": "",
+    "status": "pending",
+    "createdAt": "2026-05-21T14:08:35.682Z",
+    "replies": []
+  },
+  {
+    "id": "mpfkxtdm224p2q",
+    "name": "Gobinda",
+    "email": "nabin3788@gmail.com",
+    "message": "how are you\n",
+    "submittedBy": "",
+    "status": "pending",
+    "createdAt": "2026-05-21T14:22:11.194Z",
+    "replies": []
+  }
+]

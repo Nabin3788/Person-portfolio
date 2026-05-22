@@ -1,0 +1,18 @@
+[
+  {
+    "id": "mpfjmpltw91c1b",
+    "name": "Gobinda",
+    "email": "nabin3788@gmail.com",
+    "role": "user",
+    "passwordHash": "$2a$10$VDIwId7OjQP2wv7AEMp49uV8xaIKw1orpSHcwbKO15SSJtd9KD626",
+    "createdAt": "2026-05-21T13:45:33.473Z"
+  },
+  {
+    "id": "mpfjxblpj04tfv",
+    "name": "Test User",
+    "email": "test@example.com",
+    "role": "user",
+    "passwordHash": "$2a$10$xlMNjLns4WJKwJ8AfxcHeOFLqEdNH2KoQej/nxEnTb0TvaBiadBIC",
+    "createdAt": "2026-05-21T13:53:48.541Z"
+  }
+]
