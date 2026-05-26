@@ -5,7 +5,7 @@
     "email": "nabin3788@gmail.com",
     "message": "how can we collabrate",
     "submittedBy": "mpfjmpltw91c1b",
-    "status": "pending",
+    "status": "replied",
     "createdAt": "2026-05-21T13:56:50.440Z",
     "replies": [
       {
@@ -32,6 +32,16 @@
         "id": "mpfmvossvfyc",
         "text": "i am busy for  a while. i will give response later",
         "createdAt": "2026-05-21T15:16:31.180Z"
+      },
+      {
+        "id": "mpie3qdwle6s",
+        "text": "ya of course.",
+        "createdAt": "2026-05-23T13:34:08.468Z"
+      },
+      {
+        "id": "mpie4hikw7e1",
+        "text": "ok . at 5pm..",
+        "createdAt": "2026-05-23T13:34:43.628Z"
       }
     ],
     "messages": [
@@ -88,11 +98,29 @@
         "sender": "user",
         "text": "ok i will contact tommorrow",
         "createdAt": "2026-05-21T15:17:16.246Z"
+      },
+      {
+        "id": "mpie2gz4msp5",
+        "sender": "user",
+        "text": "ok now can i contact",
+        "createdAt": "2026-05-23T13:33:09.617Z"
+      },
+      {
+        "id": "mpie3qdwle6s",
+        "sender": "admin",
+        "text": "ya of course.",
+        "createdAt": "2026-05-23T13:34:08.468Z"
+      },
+      {
+        "id": "mpie4hikw7e1",
+        "sender": "admin",
+        "text": "ok . at 5pm..",
+        "createdAt": "2026-05-23T13:34:43.628Z"
       }
     ],
-    "updatedAt": "2026-05-21T15:17:16.253Z",
+    "updatedAt": "2026-05-23T13:34:43.630Z",
     "notificationRead": true,
-    "notificationReadAt": "2026-05-21T15:16:54.023Z"
+    "notificationReadAt": "2026-05-23T13:35:08.288Z"
   },
   {
     "id": "mpfkgc4i8u9q6d",
