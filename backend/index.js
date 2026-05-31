@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
+console.log("ENV TEST:", process.env.MONGO_URI);
 // connect to MongoDB when available
 try { require('./db').connect(); } catch (e) { /* ignore */ }
 
@@ -56,6 +57,7 @@ app.post('/api/notifications/read/:id', authenticate, (req, res) => {
   writeJson(files.contactsFile, contacts);
   res.json({ ok: true });
 });
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Portfolio backend running on http://localhost:${port}`));
