@@ -1,17 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import './Home/Home.css';
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import "./Home/Home.css";
 
 const Auth = () => {
-  const [tabs, setTabs] = useState('login');
-  const [accountType, setAccountType] = useState('user');
+  const [tabs, setTabs] = useState("login");
+  const [accountType, setAccountType] = useState("user");
   const [adminAvailable, setAdminAvailable] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [formError, setFormError] = useState(null);
   const { user, loading, login, register } = useContext(AuthContext);
 
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+  const apiUrl = process.env.REACT_APP_API_URL || "";
+  const API_BASE = apiUrl.replace(/\/$/, "");
 
   useEffect(() => {
     const checkAdminAvailability = async () => {
@@ -25,7 +30,7 @@ const Auth = () => {
     };
 
     checkAdminAvailability();
-  }, []);
+  }, [API_BASE]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,7 +41,7 @@ const Auth = () => {
     event.preventDefault();
     setFormError(null);
 
-    if (tabs === 'login') {
+    if (tabs === "login") {
       const result = await login(formData.email, formData.password);
       if (!result.success) {
         setFormError(result.error);
@@ -45,32 +50,43 @@ const Auth = () => {
     }
 
     if (!formData.name || !formData.email || !formData.password) {
-      setFormError('Name, email, and password are required.');
+      setFormError("Name, email, and password are required.");
       return;
     }
 
     if (formData.password.length < 8) {
-      setFormError('Password must be at least 8 characters.');
+      setFormError("Password must be at least 8 characters.");
       return;
     }
 
-    if (accountType === 'admin' && !adminAvailable) {
-      setFormError('Admin has already been registered. Choose user instead.');
+    if (accountType === "admin" && !adminAvailable) {
+      setFormError("Admin has already been registered. Choose user instead.");
       return;
     }
 
-    const result = await register(formData.name, formData.email, formData.password, accountType);
+    const result = await register(
+      formData.name,
+      formData.email,
+      formData.password,
+      accountType,
+    );
     if (!result.success) {
       setFormError(result.error);
     }
   };
 
   if (loading) {
-    return <main className="home-page"><p className="hero-copy">Loading authentication state...</p></main>;
+    return (
+      <main className="home-page">
+        <p className="hero-copy">Loading authentication state...</p>
+      </main>
+    );
   }
 
   if (user) {
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/contact'} replace />;
+    return (
+      <Navigate to={user.role === "admin" ? "/admin" : "/contact"} replace />
+    );
   }
 
   return (
@@ -79,41 +95,46 @@ const Auth = () => {
         <div className="hero-background" />
         <div className="hero-content">
           <span className="eyebrow">Secure Portfolio Access</span>
-          <h1>{tabs === 'login' ? 'Sign into your account' : 'Create a new account'}</h1>
+          <h1>
+            {tabs === "login"
+              ? "Sign into your account"
+              : "Create a new account"}
+          </h1>
           <p className="hero-copy">
-            Use your email and password to log in or register. Only one admin account may be created.
+            Use your email and password to log in or register. Only one admin
+            account may be created.
           </p>
 
           <div className="auth-tabs">
             <button
               type="button"
-              className={`auth-tab ${tabs === 'login' ? 'active' : ''}`}
-              onClick={() => setTabs('login')}
+              className={`auth-tab ${tabs === "login" ? "active" : ""}`}
+              onClick={() => setTabs("login")}
             >
               Log in
             </button>
             <button
               type="button"
-              className={`auth-tab ${tabs === 'register' ? 'active' : ''}`}
-              onClick={() => setTabs('register')}
+              className={`auth-tab ${tabs === "register" ? "active" : ""}`}
+              onClick={() => setTabs("register")}
             >
               Register
             </button>
           </div>
 
-          {tabs === 'register' && (
-            <div className="auth-tabs" style={{ marginTop: '16px' }}>
+          {tabs === "register" && (
+            <div className="auth-tabs" style={{ marginTop: "16px" }}>
               <button
                 type="button"
-                className={`auth-tab ${accountType === 'user' ? 'active' : ''}`}
-                onClick={() => setAccountType('user')}
+                className={`auth-tab ${accountType === "user" ? "active" : ""}`}
+                onClick={() => setAccountType("user")}
               >
                 User
               </button>
               <button
                 type="button"
-                className={`auth-tab ${accountType === 'admin' ? 'active' : ''}`}
-                onClick={() => setAccountType('admin')}
+                className={`auth-tab ${accountType === "admin" ? "active" : ""}`}
+                onClick={() => setAccountType("admin")}
               >
                 Admin
               </button>
@@ -123,7 +144,7 @@ const Auth = () => {
           {formError && <p className="form-error">{formError}</p>}
 
           <form className="contact-form" onSubmit={handleSubmit}>
-            {tabs === 'register' && (
+            {tabs === "register" && (
               <div className="form-group">
                 <label htmlFor="name">Full name</label>
                 <input
@@ -165,23 +186,24 @@ const Auth = () => {
             </div>
 
             <button type="submit" className="btn btn-hire">
-              {tabs === 'login' ? 'Sign in' : `Register as ${accountType}`}
+              {tabs === "login" ? "Sign in" : `Register as ${accountType}`}
             </button>
           </form>
 
-          {tabs === 'register' && (
-            <p className="hero-copy" style={{ marginTop: '16px' }}>
-              {accountType === 'admin'
+          {tabs === "register" && (
+            <p className="hero-copy" style={{ marginTop: "16px" }}>
+              {accountType === "admin"
                 ? adminAvailable
-                  ? 'Register the first admin account. After admin creation, all other users should use normal registration.'
-                  : 'Admin is already registered. Please choose the user role instead.'
-                : 'Register as a user to send secure contact requests and receive replies from admin.'}
+                  ? "Register the first admin account. After admin creation, all other users should use normal registration."
+                  : "Admin is already registered. Please choose the user role instead."
+                : "Register as a user to send secure contact requests and receive replies from admin."}
             </p>
           )}
 
-          {tabs === 'login' && (
-            <p className="hero-copy" style={{ marginTop: '16px' }}>
-              Login with the email and password you registered. Admins will be redirected to the admin dashboard.
+          {tabs === "login" && (
+            <p className="hero-copy" style={{ marginTop: "16px" }}>
+              Login with the email and password you registered. Admins will be
+              redirected to the admin dashboard.
             </p>
           )}
         </div>

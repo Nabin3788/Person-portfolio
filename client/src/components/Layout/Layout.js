@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import './Layout.css';
-import Menus from '../Menus/Menus';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import { Outlet, useNavigate } from "react-router-dom";
+import "./Layout.css";
+import Menus from "../Menus/Menus";
+import { AuthContext } from "../../context/AuthContext";
 
 const Layout = () => {
   const { user } = useContext(AuthContext);
@@ -25,8 +26,8 @@ const Layout = () => {
     const fetchNotifications = async () => {
       setLoadingNotifications(true);
       try {
-        const response = await fetch('/api/notifications', {
-          credentials: 'include',
+        const response = await fetch("/api/notifications", {
+          credentials: "include",
         });
         if (!response.ok) {
           setNotifications([]);
@@ -51,8 +52,8 @@ const Layout = () => {
   const markNotificationRead = async (messageId) => {
     try {
       await fetch(`/api/notifications/read/${messageId}`, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
       });
     } catch (error) {
       // ignore read errors for now
@@ -61,25 +62,37 @@ const Layout = () => {
 
   const goToReply = async (messageId) => {
     await markNotificationRead(messageId);
-    setNotifications((current) => current.filter((item) => item.id !== messageId));
+    setNotifications((current) =>
+      current.filter((item) => item.id !== messageId),
+    );
     setUnreadCount((current) => Math.max(0, current - 1));
     setDropdownOpen(false);
-    navigate('/contact', { state: { messageId } });
+    navigate("/contact", { state: { messageId } });
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownOpen]);
 
   const toggleDropdown = () => {
     setDropdownOpen((current) => !current);
+  };
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen((current) => !current);
   };
 
   return (
@@ -89,7 +102,18 @@ const Layout = () => {
           <div className="brand-ring" />
           <span>Portfolio</span>
         </div>
-        <Menus />
+        <button
+          type="button"
+          className="navbar-toggle"
+          onClick={toggleMenu}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+        >
+          {menuOpen ? <FiX /> : <FiMenu />}
+        </button>
+        <div className={`navbar-menu ${menuOpen ? "open" : "closed"}`}>
+          <Menus />
+        </div>
         {user && (
           <div className="notification-wrapper">
             <button
@@ -100,20 +124,29 @@ const Layout = () => {
               aria-label="View admin replies"
             >
               <span className="notification-icon">🔔</span>
-              {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
+              {unreadCount > 0 && (
+                <span className="notification-badge">{unreadCount}</span>
+              )}
             </button>
             {dropdownOpen && (
               <div className="notification-panel">
                 <div className="notification-panel-header">
                   <span>Admin replies</span>
-                  <button type="button" className="notification-close" onClick={() => setDropdownOpen(false)}>
+                  <button
+                    type="button"
+                    className="notification-close"
+                    onClick={() => setDropdownOpen(false)}
+                  >
                     ×
                   </button>
                 </div>
                 {loadingNotifications ? (
                   <p className="notification-loading">Loading replies…</p>
                 ) : notifications.length === 0 ? (
-                  <p className="notification-empty">No admin replies yet. You will see them here once the admin responds.</p>
+                  <p className="notification-empty">
+                    No admin replies yet. You will see them here once the admin
+                    responds.
+                  </p>
                 ) : (
                   notifications.map((item) => (
                     <button
@@ -123,11 +156,19 @@ const Layout = () => {
                       onClick={() => goToReply(item.id)}
                     >
                       <div className="notification-item-header">
-                        <span className="notification-title">Reply received</span>
-                        <time>{new Date(item.lastReplyAt).toLocaleString()}</time>
+                        <span className="notification-title">
+                          Reply received
+                        </span>
+                        <time>
+                          {new Date(item.lastReplyAt).toLocaleString()}
+                        </time>
                       </div>
-                      <p className="notification-message">{item.replies[item.replies.length - 1]?.text}</p>
-                      <p className="notification-context">View reply in your message thread</p>
+                      <p className="notification-message">
+                        {item.replies[item.replies.length - 1]?.text}
+                      </p>
+                      <p className="notification-context">
+                        View reply in your message thread
+                      </p>
                     </button>
                   ))
                 )}
